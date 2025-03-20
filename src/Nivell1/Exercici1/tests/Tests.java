@@ -2,12 +2,12 @@ package Nivell1.Exercici1.tests;
 
 import Nivell1.Exercici1.objects.Book;
 import Nivell1.Exercici1.objects.Library;
+
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.ArrayList;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 public class Tests {
 
