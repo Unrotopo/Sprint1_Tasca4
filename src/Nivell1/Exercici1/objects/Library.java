@@ -1,19 +1,38 @@
 package Nivell1.Exercici1.objects;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Library {
 
-    private static HashSet<Book> books;
+    private static ArrayList<Book> books = new ArrayList<>();
 
-    public Library() {}
-
-    public static void setBooks(HashSet<Book> books) {
-        Library.books = books;
+    public static void addBook(Book book) {
+        if (!books.contains(book)) {
+            books.add(book);
+            books.sort(Comparator.comparing(Book::getTitle));
+        }
     }
 
-    public static Set<Book> getBooks() {
+    public static ArrayList<Book> getBooks() {
         return books;
+    }
+
+    public static String getTitle(int index) {
+        return books.get(index).getTitle();
+    }
+
+    public static void addBookAtIndex(int index, Book book) {
+        if (index >= 0 && index < books.size()) {
+            books.add(index, book);
+        }
+    }
+
+    public static Book getBookFromIndex(int index) {
+        return books.get(index);
+    }
+
+    public static void removeBook(String title) {
+        books.removeIf(book -> title.equals(book.getTitle()));
     }
 }
