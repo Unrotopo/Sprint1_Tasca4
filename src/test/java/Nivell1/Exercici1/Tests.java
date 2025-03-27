@@ -12,110 +12,112 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class Tests {
 
+    Library library = new Library();
+
     @Test
     void listNotEmpty() {
 
-        Library.addBook(new Book("La insoportable levedad del ser"));
-        assertFalse(Library.getBooks().isEmpty(), "There should be at least one book");
+        library.addBook(new Book("La insoportable levedad del ser"));
+        assertFalse(library.getBooks().isEmpty(), "There should be at least one book");
     }
 
     @Test
     void listSizeCorrect() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        assertEquals(3, Library.getBooks().size(), "There should be 3 elements");
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        assertEquals(3, library.getBooks().size(), "There should be 3 elements");
     }
 
     @Test
     void correctBookPosition() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        Library.addBookAtIndex(1, new Book("La insoportable levedad del ser"));
-        assertEquals("La insoportable levedad del ser", Library.getTitle(1));
-        assertEquals("Política", Library.getTitle(2));
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        library.addBookAtIndex(1, new Book("La insoportable levedad del ser"));
+        assertEquals("La insoportable levedad del ser", library.getTitle(1));
+        assertEquals("Política", library.getTitle(2));
     }
 
     @Test
     void notDuplicateBooks() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        Library.addBook(new Book("Política"));
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        library.addBook(new Book("Política"));
         ArrayList<Book> seenBooks = new ArrayList<>();
-        for (Book book : Library.getBooks()) {
+        for (Book book : library.getBooks()) {
             if (!seenBooks.contains(book)) {
                 seenBooks.add(book);
             }
         }
-        assertEquals(seenBooks, Library.getBooks());
+        assertEquals(seenBooks, library.getBooks());
     }
 
     @Test
     void getBookFromIndex() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        assertEquals("Teeteto", Library.getBookFromIndex(2).getTitle());
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        assertEquals("Teeteto", library.getBookFromIndex(2).getTitle());
     }
 
     @Test
     void addingABookModifiesTheList() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        assertEquals(3, Library.getBooks().size());
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        assertEquals(3, library.getBooks().size());
 
-        Library.addBook(new Book("La insoportable levedad del ser"));
-        assertEquals(4, Library.getBooks().size());
+        library.addBook(new Book("La insoportable levedad del ser"));
+        assertEquals(4, library.getBooks().size());
 
-        Library.addBookAtIndex(1, new Book("Ciclonopedia"));
-        assertEquals(5, Library.getBooks().size());
-        assertEquals("Ciclonopedia", Library.getBookFromIndex(1).getTitle());
-        assertEquals("Teeteto", Library.getBookFromIndex(4).getTitle());
+        library.addBookAtIndex(1, new Book("Ciclonopedia"));
+        assertEquals(5, library.getBooks().size());
+        assertEquals("Ciclonopedia", library.getBookFromIndex(1).getTitle());
+        assertEquals("Teeteto", library.getBookFromIndex(4).getTitle());
     }
 
     @Test
     void removingABookReducesTheList() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        assertEquals(3, Library.getBooks().size());
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        assertEquals(3, library.getBooks().size());
 
-        Library.removeBook("El banquete");
-        assertEquals(2, Library.getBooks().size());
+        library.removeBook("El banquete");
+        assertEquals(2, library.getBooks().size());
     }
 
     @Test
     void listRemainsSorted() {
 
-        Library.addBook(new Book("Política"));
-        Library.addBook(new Book("El banquete"));
-        Library.addBook(new Book("Teeteto"));
-        Library.addBook(new Book("La insoportable levedad del ser"));
+        library.addBook(new Book("Política"));
+        library.addBook(new Book("El banquete"));
+        library.addBook(new Book("Teeteto"));
+        library.addBook(new Book("La insoportable levedad del ser"));
 
-        assertEquals("El banquete", Library.getBookFromIndex(0).getTitle());
-        assertEquals("La insoportable levedad del ser", Library.getBookFromIndex(1).getTitle());
-        assertEquals("Política", Library.getBookFromIndex(2).getTitle());
-        assertEquals("Teeteto", Library.getBookFromIndex(3).getTitle());
+        assertEquals("El banquete", library.getBookFromIndex(0).getTitle());
+        assertEquals("La insoportable levedad del ser", library.getBookFromIndex(1).getTitle());
+        assertEquals("Política", library.getBookFromIndex(2).getTitle());
+        assertEquals("Teeteto", library.getBookFromIndex(3).getTitle());
 
-        Library.addBook(new Book("Ciclonopedia"));
+        library.addBook(new Book("Ciclonopedia"));
 
-        assertEquals("Ciclonopedia", Library.getBookFromIndex(0).getTitle());
-        assertEquals("La insoportable levedad del ser", Library.getBookFromIndex(2).getTitle());
-        assertEquals("Política", Library.getBookFromIndex(3).getTitle());
-        assertEquals("Teeteto", Library.getBookFromIndex(4).getTitle());
+        assertEquals("Ciclonopedia", library.getBookFromIndex(0).getTitle());
+        assertEquals("La insoportable levedad del ser", library.getBookFromIndex(2).getTitle());
+        assertEquals("Política", library.getBookFromIndex(3).getTitle());
+        assertEquals("Teeteto", library.getBookFromIndex(4).getTitle());
 
-        Library.removeBook("La insoportable levedad del ser");
+        library.removeBook("La insoportable levedad del ser");
 
-        assertEquals("Política", Library.getBookFromIndex(2).getTitle());
-        assertEquals("Teeteto", Library.getBookFromIndex(3).getTitle());
+        assertEquals("Política", library.getBookFromIndex(2).getTitle());
+        assertEquals("Teeteto", library.getBookFromIndex(3).getTitle());
     }
 }
