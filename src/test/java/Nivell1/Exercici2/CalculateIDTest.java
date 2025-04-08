@@ -20,7 +20,7 @@ public class CalculateIDTest {
             "'F', 99887766",
             "'T', 00000001"
     })
-    void testCalculateID(char expectedLetter, String inputNumber) {
+    void givenConcreteIDNum_whenLetterCalculated_thenGetExpectedLetter(char expectedLetter, String inputNumber) {
         CalculateID calc = new CalculateID();
         assertEquals(expectedLetter, calc.calculateID(inputNumber));
     }
